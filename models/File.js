@@ -7,7 +7,6 @@ const File =sequelize.define('File', {
       allowNull: false,
       primaryKey: true},
       name: DataTypes.STRING,
-      folder: DataTypes.STRING,
       content: DataTypes.TEXT,
   });
   

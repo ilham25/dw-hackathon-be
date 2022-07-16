@@ -1,9 +1,11 @@
+const file = require("../schema/file");
 const login = require("../schema/login");
 const Register = require("../schema/register");
 
 const joiShema={
                  register:Register,
-                 login:login
+                 login:login,
+                 file:file
                };
 
 

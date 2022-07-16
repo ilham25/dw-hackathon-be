@@ -2,11 +2,11 @@ const File = require("./File");
 const Folder = require("./Folder");
 const User = require("./User");
 
-User.hasMany(File);
-User.hasMany(Folder);
+User.hasMany(File,{foreignKey: 'createdBy'});
+User.hasMany(Folder,{foreignKey: 'createdBy'});
 Folder.belongsTo(User );
-File.belongsTo(User );
-Folder.hasMany(File);
 File.belongsTo(User);
+Folder.hasMany(File);
+File.belongsTo(Folder);
 
 module.exports= {File, Folder, User};

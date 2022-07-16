@@ -46,6 +46,7 @@ app.use(function (req, res, next) {
          * Syncronize the Post model.
          */
         await sequelize.sync();
+        // await models.File.sync();
         // await PurchasesBook.sync({force:true});
       } catch (error) {
         console.error('Unable to connect to the database:', error);
