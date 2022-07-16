@@ -9,7 +9,7 @@ try {
     const user = await User.findOne({
         where:{id:insert.id},
         include:[{model:File},{model:Folder}],
-        attributes:{exclude:["updatedAt","createdAt","password"]}
+        attributes:{exclude:["updatedAt","createdAt"]}
     }); 
     return res.json({
     token: generateToken({id:insert.id,name:insert.username}),
@@ -35,7 +35,7 @@ async function Login(req,res,next){
     const user = await User.findOne({
       where:{username:req.body.username},
       include:[{model:File},{model:Folder}],
-      attributes:{exclude:["updatedAt","createdAt","password"]}
+      attributes:{exclude:["updatedAt","createdAt"]}
   }); 
 
     return res.json({
