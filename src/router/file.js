@@ -4,6 +4,7 @@ const filecontroller = require('../controller/FileController');
 const auth = require('../middleware/auth');
 const joi = require('../middleware/joi');
 
+router.get('/',auth(),filecontroller.getAll);
 router.get('/:id',auth(),filecontroller.get);
 router.post('/',auth(),joi('file'),filecontroller.insert);
 router.patch('/:id',auth(),joi('file'),filecontroller.update);

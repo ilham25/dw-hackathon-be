@@ -3,7 +3,7 @@ const file = require("../schema/file");
 
 async function insert(req,res,next) {
     try {
-      req.body.UserId= req.user.id; 
+      req.body.createdBy= req.user.id; 
       const file  = await File.create(req.body);
       const data = await File.findOne({where:{id:file.id}, include:[{model:User},{model:Folder}],  attributes:{exclude:["FolderId","createdBy"]} });
 
@@ -13,6 +13,23 @@ async function insert(req,res,next) {
         data: data
       });
 
+    } catch (error) {
+        console.log(error);
+        res.status(500);
+        res.send('internal server error');
+    }
+}
+
+async function getAll(req,res,next) {
+    try {
+    //   console.log(req.user);
+      const data = await File.findAll({where:{createdBy:req.user.id}, 
+        include:[{model:User},{model:Folder}], attributes:{exclude:["FolderId","createdBy"]} });
+      return res.json({
+        status: 200,
+        message:"success",
+        data: data
+      });
     } catch (error) {
         console.log(error);
         res.status(500);
@@ -103,4 +120,4 @@ async function destroy(req,res,next) {
 }
 
 
-module.exports={insert,get,update,destroy}
+module.exports={insert,get,update,destroy,getAll}

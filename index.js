@@ -45,7 +45,7 @@ app.use(function (req, res, next) {
          /**
          * Syncronize the Post model.
          */
-        await sequelize.sync();
+        await sequelize.sync({alter:true});
         // await models.File.sync();
         // await PurchasesBook.sync({force:true});
       } catch (error) {
