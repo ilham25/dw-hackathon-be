@@ -6,5 +6,7 @@ User.hasMany(File);
 User.hasMany(Folder);
 Folder.belongsTo(User );
 File.belongsTo(User );
+Folder.hasMany(File);
+File.belongsTo(User);
 
 module.exports= {File, Folder, User};
