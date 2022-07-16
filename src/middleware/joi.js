@@ -1,7 +1,9 @@
+const login = require("../schema/login");
 const Register = require("../schema/register");
 
 const joiShema={
                  register:Register,
+                 login:login
                };
 
 
