@@ -50,6 +50,31 @@ async function Login(req,res,next){
 }
 
 
+async function GetProfile(req,res,next){
+  try {
+    const user = await User.findOne({ 
+      where:{id:req.user.id},
+      include:[{model:File},{model:Folder}],
+      attributes:{exclude:["updatedAt","createdAt"]}
+    }); 
+
+
+    if(user === null){
+      return res.json({ message:"user not found"});
+    }
+
+    return res.json({
+    status: 200,
+    message:"success",
+    user
+    });
+} catch (error) {
+    console.log(error);
+    res.status(500);
+    res.send('internal server error');
+}
+}
+
 
 function generateToken(data) {
     return jwt.sign(
@@ -58,4 +83,4 @@ function generateToken(data) {
     );
   }
 
-module.exports={Register,Login}
+module.exports={Register,Login,GetProfile}
